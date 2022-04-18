@@ -1,5 +1,10 @@
-require('colors');
+require('colors'); //importamos todo el modulo para manipular colores
 
+/*
+Esta funcion me general el menu principal , retorna una promesa 
+Utiliza el modulo nativo 'readline' para manipular la entrada del teclado
+
+*/
 
 const mostrarMenu = () => {
 
@@ -23,8 +28,8 @@ const mostrarMenu = () => {
             output: process.stdout
         });
 
-        readline.question('Seleccione una opción: ', (opt) => {
-            readline.close();
+        readline.question('Seleccione una opción: ', (opt) => { //funcion question a la que le pasamos un callback y me retorna
+            readline.close();                                   // el texto ingresa , luego resolvemos la promesa
             resolve(opt);
         })
 
@@ -33,7 +38,7 @@ const mostrarMenu = () => {
     
 
 }
-
+//Funcio que retorna una promesa, mostrado el mensaje siguiente, presionando enter, resolvemos 
 const pausa = () => {
 
     return new Promise( resolve => {
@@ -49,7 +54,7 @@ const pausa = () => {
     });
 }
 
-
+//exportamos las siguientes funciones
 module.exports = {
     mostrarMenu,
     pausa

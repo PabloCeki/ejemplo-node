@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 require('colors');
 
+//Array lamado preguntas que contiene el menu principal
 const preguntas = [
     {
         type: 'list',
@@ -41,10 +42,15 @@ const preguntas = [
 ];
 
 
-
+/**
+ * Funcion  asyncrona para imprimir el menu y seleccionar una opcion listada
+ * hace uso de la funcion pront del modulo inquirer
+ * al final retorna la opcion selecionada
+ * 
+ */
 const inquirerMenu = async() => {
 
-    console.clear();
+    console.clear(); // limpia la pantalla
     console.log('=========================='.green);
     console.log('  Seleccione una opción'.white );
     console.log('==========================\n'.green);
@@ -53,7 +59,9 @@ const inquirerMenu = async() => {
 
     return opcion;
 }
-
+/*
+Esta funciona imprime el siguiente menu con la funciona prompt del modulo inquirer
+*/
 const pausa = async() => {
     
     const question = [
@@ -64,10 +72,13 @@ const pausa = async() => {
         }
     ];
 
-    console.log('\n');
+    console.log('\n'); // aqui tenemos un salto de linea
     await inquirer.prompt(question);
 }
-
+/*
+Esta funcion nos pide que ingremos un valor con el mensaje que nosotros le pasemos , no sin antes validad que hemos
+ingresa algo, retorna true si es correcto
+*/
 const leerInput = async( message ) => {
 
     const question = [
@@ -75,7 +86,7 @@ const leerInput = async( message ) => {
             type: 'input',
             name: 'desc',
             message,
-            validate( value ) {
+            validate( value ) { //validacion
                 if( value.length === 0 ) {
                     return 'Por favor ingrese un valor';
                 }
@@ -84,23 +95,32 @@ const leerInput = async( message ) => {
         }
     ];
 
-    const { desc } = await inquirer.prompt(question);
-    return desc;
+    const { desc } = await inquirer.prompt(question); //descontruimos la propiedad desc (descripcion)
+    return desc; //retornamos la misma
 }
-
+/*
+ Funcion que mapea el arreglo pasado como argumento llamado tareas
+ en una objeto tipo
+ {
+     value: id
+     name: id + descripcion
+ }
+*/
 const listadoTareasBorrar = async( tareas = [] ) => {
 
-    const choices = tareas.map( (tarea, i) => {
+    const choices = tareas.map( (tarea, i) => { //genera un array nuevo mapeado
 
         const idx = `${i + 1}.`.green;
 
         return {
             value: tarea.id,
             name:  `${ idx } ${ tarea.desc }`
+        
         }
+        
     });
 
-    choices.unshift({
+    choices.unshift({ //unshift agrega el siguiente objeto al principio del array llamado choises
         value: '0',
         name: '0.'.green + ' Cancelar'
     });
@@ -114,10 +134,10 @@ const listadoTareasBorrar = async( tareas = [] ) => {
         }
     ]
 
-    const { id } = await inquirer.prompt(preguntas);
+    const { id } = await inquirer.prompt(preguntas);//devuelve el id de la opcion selecionada
     return id;
 }
-
+//funcion para armar un confirm en el cual se responde si o no
 const confirmar = async(message) => {
 
     const question = [
@@ -131,10 +151,20 @@ const confirmar = async(message) => {
     const { ok } = await inquirer.prompt(question);
     return ok;
 }   
+/*
+Esta funcion muestra un listado de checklist para seleccionar
+pasandole un array 
+retorna un objeto 
+{
+    value: number,
+    name: string,
+    checked: boolean
 
+}
+*/
 const mostrarListadoChecklist = async( tareas = [] ) => {
 
-    const choices = tareas.map( (tarea, i) => {
+    const choices = tareas.map( (tarea, i) => { //tareas a seleccionar
 
         const idx = `${i + 1}.`.green;
 
@@ -145,14 +175,15 @@ const mostrarListadoChecklist = async( tareas = [] ) => {
         }
     });
 
-    const pregunta = [
+    const pregunta = [ 
         {
-            type: 'checkbox',
+            type: 'checkbox', //determina que tipo de menu mostrara
             name: 'ids',
             message: 'Selecciones',
-            choices
+            choices //pasamos el array mapeado
         }
     ]
+
 
     const { ids } = await inquirer.prompt(pregunta);
     return ids;

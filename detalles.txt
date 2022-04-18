@@ -1,0 +1,15 @@
+Esta aplicacion es un crud para la manipulacion de tareas, utilizando un archivo llamado 'data.json' que nos sirve como
+base de datos, utiliza una serie de dependencias externas que son colours,inquirer,uuuid, tambien utliza dependencias
+nativas que son readline,fs (filesystem) para la entrada del teclado y escritura en disco
+La aplicacion usa tambien dos clases una que es Tareas, y otro que es Tarea, la idea basicamente es leer el archivo, 
+hcer un PARSER a un objeto javascript para su manipulacion
+la dependencia inquirer me permite armar una serie de menus
+
+En coderhouse no vi este tipo de manipulacion de menu y teclados en consola
+solo vimos nodejs orientado a microservicios tipo API-REST con express 
+Pero me parecio interesante su uso
+
+Este programa utiliza clases, tengo poca experiencia , aunq conozco los que es programacion orientada a objetos
+Polimorfismo, Encapsulamiento y Herencia
+
+pero yo estoy trabajando con programacion FUNCIONAL sobretodo...
