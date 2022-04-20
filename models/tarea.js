@@ -25,4 +25,4 @@ class Tarea {
 
 
 
-module.exports = Tarea;
+module.exports = Tarea; //exportamos la clase tarea

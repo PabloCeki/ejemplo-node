@@ -13,6 +13,7 @@ const Tarea = require('./tarea'); //importamos la clase Tarea del modulo ./tarea
 
 class Tareas {
 
+    // borrar esto esta al pedo
     _listado = {  //atributo
         'abc': 123 //clave:valor
     };
@@ -27,15 +28,23 @@ class Tareas {
 
     get listadoArr() { //el  metodo es una getter  o sea una propiedad listadoArr
 
-        const listado = [];
-        Object.keys(this._listado).forEach( key => {
-            const tarea = this._listado[key];
-            listado.push( tarea );
-        });
 
-        return listado;
+        //Esto esta al pedo Inicio
+
+
+        // const listado = [];
+        // Object.keys(this._listado).forEach( key => {
+        //     const tarea = this._listado[key];
+        //     listado.push( tarea );
+        // });
+
+        // return listado;
+
+        //final
+
+        return Object.values(this._listado)
     }
-
+   
 
     constructor() { //contructor vacios 
         this._listado = {}; // se inicializa el atributo _listado que es de tipo {} o sea objeto
@@ -73,8 +82,8 @@ class Tareas {
      */
     crearTarea( desc = '' ) {
 
-        const tarea = new Tarea(desc);
-        this._listado[tarea.id] = tarea;
+        const tarea = new Tarea(desc); //creamos una instancia de la clase Tarea
+        this._listado[tarea.id] = tarea; //mapeamos el id con la tarea en si
     }
     /**
      * Listamos el arreglo listadoArr y mostramos en pantalla
@@ -112,22 +121,24 @@ class Tareas {
             if ( completadas ) { // si el atributo completado de arriba es true y completadoEn es distitno a null
                 // mostrar completadas
                 if ( completadoEn ) {
-                    contador += 1; //incrementamos contador
-                    console.log(`${ (contador + '.').green } ${ desc } :: ${ completadoEn.green }`); //mostramos en pantalla el contador,descripcion y fecha que se completo
+                    //incrementamos contador
+                    //contador +=1
+                    console.log(`${ (++contador + '.').green } ${ desc } :: ${ completadoEn.green }`); //mostramos en pantalla el contador,descripcion y fecha que se completo
                 }
             } else {
                 // mostrar pendientes
                 if ( !completadoEn ) {
-                    contador += 1;
-                    console.log(`${ (contador + '.').green } ${ desc } :: ${ estado }`); //mostramos contador, descripcion y el estado
+                    //contador +=1
+                    console.log(`${ (++contador + '.').green } ${ desc } :: ${ estado }`); //mostramos contador, descripcion y el estado
                 }
             }
+            
 
         });     
 
     }
-
-    toggleCompletadas( ids = [] ) {  //esta funcion cambia el estado de una tarea si esta completada a pendiendo y sino lo contrario
+    //esta funcion cambia el estado de una tarea si esta completada a pendiendo y sino lo contrario
+    toggleCompletadas( ids = [] ) {  
 
         ids.forEach( id => { //recorremos el arreglo de ids que le pasamos 
 

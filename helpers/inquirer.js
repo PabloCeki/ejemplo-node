@@ -1,5 +1,6 @@
-const inquirer = require('inquirer');
+const inquirer = require('inquirer'); //este modulo sirve para interactuar con la terminal
 require('colors');
+//Este modulo tiene un par de funciones utiles para imprimir los menu's
 
 //Array lamado preguntas que contiene el menu principal
 const preguntas = [
@@ -48,7 +49,7 @@ const preguntas = [
  * al final retorna la opcion selecionada
  * 
  */
-const inquirerMenu = async() => {
+const inquirerMenu = async () => { // function inquirerMenu(){}
 
     console.clear(); // limpia la pantalla
     console.log('=========================='.green);

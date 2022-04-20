@@ -58,7 +58,7 @@ const main = async() => {
             case '6': // Borrar
                 const id = await listadoTareasBorrar( tareas.listadoArr ); //listamos todas las tareas y selecionamos la que queremos borrar esto ns devuelve el id de la tarea
                 if ( id !== '0' ) {
-                    const ok = await confirmar('¿Está seguro?');
+                    const ok = await confirmar('¿Está seguro?');//confirma lo toma del modulo inquirer personalizado 
                     if ( ok ) {
                         tareas.borrarTarea( id ); //borramos la tarea
                         console.log('Tarea borrada');
@@ -71,7 +71,7 @@ const main = async() => {
 
         guardarDB( tareas.listadoArr ); //guardamos de nuevo la lista al archivo db/data.json
 
-        await pausa();//pausamos
+        await pausa();//pausamos 
 
     } while( opt !== '0' );
 
